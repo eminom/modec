@@ -1,3 +1,8 @@
 *.obj
 *.swp
 *.txt
+parser
+lex.yy.c
+y.tab.c
+lex.yy.h
+y.tab.h

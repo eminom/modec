@@ -19,6 +19,10 @@ o {
 	//PRT("OBJECT");
 	return TokenO;
 }
+
+vn {
+	return TokenVN;
+}
 	
 v {
 	//PRT("Vertex\n");
@@ -32,6 +36,10 @@ f {
 
 s {
 	return TokenS;
+}
+
+\/\/ {
+	return TokenSlashSlash;
 }
 
 -?[0-9][0-9]*\.[0-9][0-9]* {

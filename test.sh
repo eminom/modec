@@ -1,4 +1,4 @@
 #!/bin/bash
 
-cat uvsphere.obj | perl filter.pl | ./parser > uvsphere.json
+cat input/uvsphere.obj | perl filter.pl | ./parser > uvsphere.json
 

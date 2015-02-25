@@ -83,6 +83,21 @@ cJSON *mc_addFaceN(cJSON *host, int v1, int vn1, int v2, int vn2, int v3, int vn
 		}
 		cJSON_AddItemToArray(facena, face);
 	}
+	return host;
+}
+
+cJSON* mc_addFaceN3(cJSON *host, int v1, int vn1, int v2, int vn2, int v3, int vn3){
+	cJSON* facena = cJSON_GetObjectItem(host, "FaceN");
+	char text[3][32];
+	sprintf(text[0], "%d/%d", v1, vn1);
+	sprintf(text[1], "%d/%d", v2, vn2);
+	sprintf(text[2], "%d/%d", v3, vn3);
+	cJSON *face = cJSON_CreateArray();
+	for(int i=0;i<3;++i){
+		cJSON_AddItemToArray(face, cJSON_CreateString(text[i]));
+	}
+	cJSON_AddItemToArray(facena, face);
+	return host;
 }
 
 cJSON *curObj = 0;
@@ -221,6 +236,19 @@ TokenF ConstInt ConstInt ConstInt{
 	free($4);
 	free($3);
 	free($2);
+}
+|TokenF Face0 Face0 Face0 {
+	DBG("Face with tree");
+	struct VertexNormal a[3];
+	for(int i=sizeof(a)/sizeof(a[0])-1;i>=0;--i){
+		popFaceE(&a[i]);
+	}
+	if(!curObj){
+		fprintf(stderr, "Object not defined!\n");
+		abort();
+	}
+	mc_addFaceN3(curObj, a[0].v, a[0].vn, a[1].v, a[1].vn, a[2].v, a[2].vn);
+
 }
 |TokenF Face0 Face0 Face0 Face0{
 	DBG("Face with four v");

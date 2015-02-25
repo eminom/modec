@@ -1,6 +1,7 @@
 *.obj
 *.swp
 *.txt
+*.json
 parser
 lex.yy.c
 y.tab.c

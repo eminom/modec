@@ -1,7 +1,7 @@
 all:
 	yacc -d modec.y
 	flex -l modec.l
-	cc -std=c99 -o parser lex.yy.c y.tab.c lib/json/cJSON.c -lm
+	gcc -std=c99 -o parser lex.yy.c y.tab.c lib/json/cJSON.c -lm
 
 clean:
 	rm -f *.json
